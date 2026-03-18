@@ -48,10 +48,6 @@ Practical notes on using AI in software development — cut through hype, focus 
 
 - [Autonomous Agent Tools](docs/11-Warning-Autonomous-Agent-Tools.md) — Risk analysis of highly autonomous agents: accidental errors, prompt injection, legal aspects
 
-### Article Series (Українська)
-
-Ukrainian translations of the article series are in the [`ukr/`](ukr/) folder.
-
 ### Reference Materials
 
 Additional research and strategic documents in [`docs/`](docs/):
@@ -68,7 +64,6 @@ Additional research and strategic documents in [`docs/`](docs/):
 promts/          — Structured prompts (specifications for AI generation)
 results/         — Generated deliverables (sales pitch, technical playbook)
 docs/            — Article series, research, and reference materials
-ukr/             — Ukrainian translations of the article series
 ```
 
 ---
