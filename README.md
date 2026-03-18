@@ -1,53 +1,82 @@
-# swe-ai-guide
+# AI-Native Development
 
-Short, practical notes on using AI in software development.
+A practical guide to AI-native software engineering — from foundational concepts to enterprise adoption.
 
-## Why this series
+This repository contains **prompts**, **generated results**, and **reference documentation** for introducing and scaling AI-native development practices.
 
-- **Cut through hype**: Marketing overpromises; reality sits between “AI does nothing” and “AI does everything.”
-- **Practical focus**: Real-world usage, not vendor slogans.
+---
 
-## Series Overview
+## Prompts & Results
 
-This series consists of 9 articles covering AI in software development:
+The core of this repo: structured prompts that produce ready-to-use deliverables via frontier AI models.
 
-0. **Introduction** - [English](en/ai_0.md) | [Українська](ukr/ai_0.md)  
-   Current state of AI in development, why it works, and adoption strategies
+| # | Prompt | Result | Audience |
+|---|--------|--------|----------|
+| 1 | [Sales Pitch](promts/01-sales-pitch.md) | [Strategic Sales Guideline](results/01-sales-pitch.md) | CTOs, VPs of Engineering, Tech Leads |
+| 2 | [Technical Best Practices](promts/02-technical-best-practices.md) | [Technical Playbook](results/02-technical-best-practices.md) | Senior developers, tech leads, architects |
 
-1. **AI as tool #2** - [English](en/ai_1.md) | [Українська](ukr/ai_1.md)  
-   Practical examples: tests, documentation, business logic, and synergy with DDD/TDD
+**How it works:** Each prompt is a detailed specification. Feed it to a frontier model (Claude, GPT, Gemini) and get a polished, evidence-backed document as output. The results are committed here as reference.
 
-2. **Language models basics** - [English](en/ai_2.md) | [Українська](ukr/ai_2.md)  
-   How transformers work, training process, and why LLMs became so capable
+---
 
-3. **LLM chat interaction** - [English](en/ai_3.md) | [Українська](ukr/ai_3.md)  
-   Effective prompting techniques, context management, and quality improvement
+## Documentation
 
-4. **From chat to agents** - [English](en/ai_4.md) | [Українська](ukr/ai_4.md)  
-   Moving beyond simple chat to autonomous task execution and workflow automation
+### Article Series (English)
 
-5. **Development agents** - [English](en/ai_5.md) | [Українська](ukr/ai_5.md)  
-   Practical agent tools, capabilities, limitations, and real-world development workflows
+Practical notes on using AI in software development — cut through hype, focus on real-world usage.
 
-6. **Agent extensibility** - [English](en/ai_6.md) | [Українська](ukr/ai_6.md)  
-   MCP protocol, tool integration, and expanding agent capabilities with custom extensions
+| # | Article | Topic |
+|---|---------|-------|
+| 0 | [Foreword](docs/00-AI-in-Software-Development-Foreword.md) | Current state of AI in development, why it works, adoption strategies |
+| 1 | [AI as Tool #2](docs/01-AI-as-Developer-Tool-Number-Two.md) | Tests, documentation, business logic, synergy with DDD/TDD |
+| 2 | [Language Models Basics](docs/02-Basic-Ideas-of-Language-Models.md) | How transformers work, training, why LLMs became capable |
+| 3 | [LLM Chat Interaction](docs/03-Basic-Interaction-with-LLM-Through-Chat.md) | Prompting techniques, context management, quality improvement |
+| 4 | [From Chat to Agents](docs/04-From-Chat-to-Agents.md) | Autonomous task execution and workflow automation |
+| 5 | [Development Agents](docs/05-LLM-Agents-for-Software-Development.md) | Agent tools, capabilities, limitations, real-world workflows |
+| 6 | [Agent Extensibility](docs/06-Agent-Extensibility.md) | MCP protocol, tool integration, custom extensions |
+| 7 | [Development Processes](docs/07-Bringing-AI-into-Development-Processes.md) | Enterprise adoption, security, tools, team workflows |
+| 8 | [Specification Driven Development](docs/08-Specification-Driven-Development.md) | Living specifications, task decomposition, model context management |
 
-7. **Development processes** - [English](en/ai_7.md) | [Українська](ukr/ai_7.md)  
-   Enterprise adoption, security, tools overview, and integrating AI into team workflows
+### Updates
 
-8. **Specification Driven Development** - [English](en/ai_8.md) | [Українська](ukr/ai_8.md)  
-   Building living specifications, decomposing work for AI, and keeping implementation within model context
+| Date | Article | Summary |
+|------|---------|---------|
+| Nov 2025 | [Models & Capabilities Update](docs/09-Update-Models-and-Capabilities-Nov-2025.md) | State of models, quantitative improvements, practical impact |
+| Mar 2026 | [AI Automation Update](docs/10-Update-AI-Automation-Spring-2026.md) | Current state of agents, context management, enterprise adoption |
 
-## Updates
+### Warnings
 
-- **Update on models and capabilities (Nov 2025)** - [English](en/upd_ai_1.md) | [Українська](ukr/upd_ai_1.md)  
-  Current state of models, quantitative improvements, and practical impact on development
-- **Update on AI automation state (Mar 2026)** - [English](en/upd_ai_2.md) | [Українська](ukr/upd_ai_2.md)  
-   Incremental update to the series: current state of AI automation, agents, context management, and enterprise adoption
+- [Autonomous Agent Tools](docs/11-Warning-Autonomous-Agent-Tools.md) — Risk analysis of highly autonomous agents: accidental errors, prompt injection, legal aspects
 
-## Warnings
+### Article Series (Українська)
 
-- **Autonomous agent tools** - [English](en/warn_1.md) | [Українська](ukr/warn_1.md)  
-  Risk analysis of highly autonomous agents: accidental errors, prompt injection, legal aspects
+Ukrainian translations of the article series are in the [`ukr/`](ukr/) folder.
 
-Start with the introduction: [en/ai_0.md](en/ai_0.md) or [ukr/ai_0.md](ukr/ai_0.md). Feedback and concise, opinionated notes are welcome; please avoid link-only news drops.
+### Reference Materials
+
+Additional research and strategic documents in [`docs/`](docs/):
+
+- [The Strategic Evolution of AI-Native Software Engineering](docs/The%20Strategic%20Evolution%20of%20AI-Native%20Software%20Engineering.md) — Deep research covering benchmarks, CI/CD, compliance, TCO, local models, org scaling
+- [Anthropic Build with Claude](docs/Anthropic%20Build%20with%20Claude%20-%20Developer%20Resources.md) — Developer resources reference
+- [How I Code With AI Agents (Spec-Driven Development)](docs/How%20I%20Code%20With%20AI%20Agents%20(Spec-Driven%20Development).md)
+
+---
+
+## Repository Structure
+
+```
+promts/          — Structured prompts (specifications for AI generation)
+results/         — Generated deliverables (sales pitch, technical playbook)
+docs/            — Article series, research, and reference materials
+ukr/             — Ukrainian translations of the article series
+```
+
+---
+
+## Quick Start
+
+1. **For leadership buy-in** → Read [results/01-sales-pitch.md](results/01-sales-pitch.md)
+2. **For engineering teams** → Read [results/02-technical-best-practices.md](results/02-technical-best-practices.md)
+3. **For deep understanding** → Start with [docs/00-AI-in-Software-Development-Foreword.md](docs/00-AI-in-Software-Development-Foreword.md)
+
+Feedback and concise, opinionated notes are welcome.
