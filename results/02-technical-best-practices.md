@@ -379,6 +379,21 @@ Give agents the tools to verify their own output:
 
 When an agent can run tests and fix failures autonomously, you get a tighter feedback loop than human-driven TDD.
 
+### Internal evaluation pipelines (Evaluation-Driven Development)
+
+Beyond testing individual features, high-performing teams establish **"Evaluation-Driven Development" (EDD)** — an internal, Docker-isolated harness where agents are benchmarked against the company's own historical bugs and feature requests.
+
+**Four dimensions to measure:**
+
+| Dimension | What to measure | How |
+|-----------|----------------|-----|
+| **Correctness** | Unit + integration test pass rates of generated patches | Automated test runner in CI |
+| **Security** | Vulnerability scan results on AI-generated code | Sonar, Snyk in pipeline |
+| **Maintainability** | Readability, style adherence, documentation quality | LLM-as-judge scoring |
+| **Token Efficiency** | Cost and steps to reach a solution | Track tokens/resolved-issue |
+
+**Why public benchmarks aren't enough:** SWE-bench Verified scores approach 80% for frontier models (Spring 2026), but "SWE-bench Pro" (private repos, zero-shot) drops to ~23%. Your internal eval on your codebase is the only metric that matters for your team.
+
 ---
 
 ## 7. Code Organization for AI Readability
@@ -451,6 +466,29 @@ When agents interact with external data (user input, API responses, database con
 - Use output parsing with strict schemas
 - Monitor agent actions for unexpected patterns
 
+### Regulatory compliance (Spring 2026)
+
+The legal landscape has accelerated. Engineering teams must now address:
+
+**EU AI Act (fully applicable August 2, 2026):**
+- **Article 50**: AI-generated code must be marked in machine-readable format and detectable as synthetic content. Adopt "Code Watermarking" and metadata embedding in version control.
+- **High-risk classification**: If AI-generated code is a safety component in regulated products (medical devices, critical infrastructure), Articles 8-15 apply — requiring rigorous risk management, data governance, and documented human oversight.
+- **Prohibited practices**: Systems engaging in harmful manipulation or social scoring are strictly banned.
+
+**IP and copyright:**
+The US and EU maintain that AI-generated code without significant human creative input is **not copyrightable**. SDD's "Human-Architected" model (human spec → AI execution → human review) constitutes the "creative expression" needed for copyright protection. Document the specification-to-code chain.
+
+**Practical compliance checklist:**
+
+| Requirement | Implementation | Standard |
+|------------|---------------|----------|
+| **Traceability** | Immutable audit trail of every prompt and response that generated production code | SOX, PCI-DSS |
+| **PII sanitization** | Tenant-isolated inference gateway strips personal data before cloud LLM calls | GDPR |
+| **Vulnerability liability** | Machine-speed security scanning (Sonar, Snyk) on all AI-generated code | All |
+| **License tracking** | Observability layers to detect copyleft-licensed code (GPL, AGPL) in AI output | IP compliance |
+| **Code watermarking** | Machine-readable markers identifying AI-generated code in VCS metadata | EU AI Act Art. 50 |
+| **Human oversight** | Documented human review gates for all production code | EU AI Act Art. 14 |
+
 ---
 
 ## 9. Measurable Impact — Real Numbers
@@ -479,13 +517,32 @@ When agents interact with external data (user input, API responses, database con
 
 | Aspect | Cloud (frontier models) | Local models |
 |--------|----------------------|-------------|
-| Quality | State of the art | 12+ months behind |
+| Quality | State of the art | Gap closing — see below |
 | Latency | Network-dependent | Instant |
 | Privacy | Vendor-dependent | Full control |
 | Cost at scale | Per-token | Hardware capex |
 | Best for | Production work, complex tasks | Sensitive code, offline use, autocomplete |
 
-**Recommendation:** Use cloud services for primary development work. Use local models as supplementary (autocomplete, simple edits) or when data sovereignty requires it.
+**Open-source model trajectory (Spring 2026):**
+
+The gap between proprietary and open-source coding models is closing significantly. A **Hybrid Strategy** has become the enterprise standard:
+
+| Model Class | SOTA Open-Source (Spring 2026) | Performance vs. GPT-5 | Practical Use Case |
+|------------|-------------------------------|----------------------|-------------------|
+| Frontier-Class | DeepSeek V4 / Llama 4 | -5% to -10% | Complex feature implementation |
+| Mid-Tier | Qwen 3 (72B) / Mistral Large 3 | -15% | RAG-driven knowledge retrieval |
+| Flash-Class | Codestral V2 / Phi-4 | -25% | Low-latency autocomplete |
+
+Models like DeepSeek-V3.2 and Qwen-3 score over 60% on SWE-bench Verified — matching early GPT-4 performance. Companies are successfully fine-tuning open-source models (using Unsloth or LoRA) on internal codebases, allowing a 70B parameter model to outperform a 1T general model on domain-specific tasks.
+
+**Hybrid Privacy Patterns** for regulated industries:
+1. **PII Stripping Proxy**: Outgoing LLM calls pass through a local gateway (Bifrost, LiteLLM) that tokenizes sensitive data
+2. **Data Classification Routing**: Simple tasks → local models (Mistral 7B); complex reasoning → secure enterprise cloud instance
+3. **Local RAG + Cloud Reasoning**: Knowledge base (Qdrant) stays on-premise; only anonymized reasoning requests go to cloud
+
+Hardware cost for a capable on-premise cluster (8x NVIDIA B200): ~$338,495. On-premise shows up to 6x cost advantage per token at scale.
+
+**Recommendation:** Use cloud services for primary development work. Use local models for autocomplete, sensitive code, and high-volume/low-complexity tasks. Route strategically based on data classification.
 
 ---
 
@@ -597,6 +654,13 @@ Legacy refactoring tasks that took **weeks** now take **days**. The biggest savi
 - Skills library: team-specific agent Skills shared across projects
 - **Success metric:** Org-wide adoption, documented productivity gains, skill library growing
 
+#### Quarter 3+: Institutional Platform (100+ Engineers)
+- **Shared Specification Repositories**: Centralized Git repos with EARS templates, "Golden Prompts," and architectural conventions across all teams
+- **Centralized MCP Gateways**: Unified catalog of tool integrations (Slack, Jira, Enterprise DBs) under RBAC governance — replaces per-team MCP setup
+- **Internal AI Platform**: Developer portal (Backstage, Spotify Portal) as the hub for AI-ready engineering culture — shared specs, convention libraries, agent Skills registry
+- **Communities of Practice**: Cross-team knowledge sharing — propagate learnings from pioneers to adopters through regular demos, shared playbooks, and internal workshops
+- **Success metric:** Platform adoption >80%, cross-team spec reuse, onboarding velocity drops from weeks to hours
+
 ### How SDD fits existing processes
 
 | Existing practice | How it changes |
@@ -608,12 +672,28 @@ Legacy refactoring tasks that took **weeks** now take **days**. The biggest savi
 
 ### Training plan: skills engineers need to develop
 
+**Two learning paths (2026 model):**
+
+- **Path A: Workflow Architect (Power User)** — SDD, agent orchestration, spec writing, context engineering. Time to value: **days**. This is where most engineers should start.
+- **Path B: AI Builder (Technical)** — Fine-tuning (LoRA/PEFT), RAG pipelines, LangChain/LangGraph. Requires deep ML knowledge. Time to value: **months**.
+
+**Role evolution in the AI-Native era:**
+
+| Level | Traditional Focus | 2026 AI-Native Focus |
+|-------|-------------------|---------------------|
+| **Junior** | Syntax, unit tests, bug fixes | Prompt design, context design, basic orchestration |
+| **Mid-Level** | Feature implementation, API design | Agent team orchestration, spec validation |
+| **Senior/Staff** | Architecture, scalability, mentoring | Specification engineering, "Bounded Autonomy" design |
+
+**The 3-Minute Rule:** Before starting any AI-assisted task, the engineer must articulate the architectural goal in their own words. This ensures they remain the "Human-Architect" and not just a "Tab-presser." Curricula must emphasize this discipline to prevent "Over-reliance" where validation is ignored.
+
 | Skill | What it means | How to develop |
 |-------|--------------|----------------|
 | **Spec writing** | Writing precise, unambiguous requirements in EARS syntax | Practice with real tasks; review spec ↔ output quality correlation |
 | **Context engineering** | Knowing what context to provide and how to structure it | Study conventions files from successful projects; experiment with context strategies |
 | **Prompt design** | Crafting effective prompts for different task types | Build a prompt library; share what works across the team |
 | **AI code review** | Reviewing AI output for correctness, security, and maintainability | Treat like reviewing a junior developer's code; use checklists |
+| **Evaluation design** | Building internal eval harnesses to measure agent quality | Start with historical bugs; measure correctness + security + maintainability + token cost |
 
 ### Measuring adoption success
 
@@ -624,6 +704,20 @@ Legacy refactoring tasks that took **weeks** now take **days**. The biggest savi
 | Defect rate | Bugs per release (before vs after) | 30-50% reduction |
 | Developer satisfaction | Anonymous quarterly survey | Positive trend |
 | Spec quality | % of specs that produce good first-pass output | >70% by Q2 |
+| Onboarding velocity | Time for new dev to ship first feature | Target: hours, not weeks |
+| Technical debt reduction | Legacy modules documented + tested per quarter | Steady upward trend |
+
+### Org-level leadership metrics
+
+Track **"Flow Efficiency"** — the ratio of value-added time to total time — rather than vanity metrics like tokens consumed:
+
+| Metric | What it measures | Why it matters |
+|--------|-----------------|----------------|
+| **Flow Efficiency** | Value-added time / total time | Core indicator of SDD impact |
+| **Onboarding Velocity** | New dev → first contribution time | Measures knowledge codification quality |
+| **Technical Debt Reduction Rate** | Legacy modules modernized / quarter | Tracks organizational health |
+| **AI-Attributed Change Failure Rate** | Production incidents from AI-generated code | Safety signal for agent quality |
+| **Spec Reuse Rate** | % of tasks using template specs | Measures compound engineering maturity |
 
 ---
 
@@ -724,6 +818,36 @@ Payback period:   < 2 weeks
 
 Even at 25% of estimated time savings, the ROI is overwhelming.
 
+### Multi-year TCO framework
+
+For organizations planning beyond the first year, use the industry-standard TCO formula:
+
+$$TCO = C_{acq} + (C_{op} + C_{maint} + C_{supp}) \times Y + C_{token} - V_{res}$$
+
+Where $Y$ is expected lifespan (typically 5 years) and $V_{res}$ is residual value.
+
+**5-Year comparison for a 200-engineer organization:**
+
+| Cost Category | Cloud-Native (API/MaaS) | On-Premise (GPU Cluster) |
+|--------------|-------------------------|---------------------------|
+| Upfront CapEx | $0 | ~$461,568 |
+| Annual Maintenance/Power | $0 | ~$110,376 |
+| Average Token Cost (Annual) | ~$1,247,600 | $0 (in-house inference) |
+| **5-Year Total Cost** | **~$6,238,000** | **~$1,013,448** |
+| Cost Advantage | Baseline | ~6x cheaper per token |
+
+Cloud offers flexibility to access frontier reasoning models not yet available locally. On-premise offers predictable costs and data sovereignty. Most enterprises are adopting a **hybrid approach**: local models for high-volume/low-complexity + cloud for complex reasoning.
+
+### Hidden costs to budget for
+
+| Hidden Cost | Description | Mitigation |
+|------------|-------------|------------|
+| **Productivity dip** | 3-6 month calibration period (McKinsey, 2026) | Plan for it; don't expect instant results |
+| **Context engineering** | Time preparing Repository Context and metadata | Front-load conventions files; compound over time |
+| **AI debt** | Code nobody understands because AI wrote it | Require spec-to-code traceability; mandate review |
+| **Debugging AI code** | Different failure patterns than human code | Train "forensic debugging" — use reasoning traces |
+| **Hiring profile shift** | Need "Hybrid Professionals" not "Pure Coders" | Retrain existing team; update job descriptions |
+
 ### Framing that works with leadership
 
 **Don't say:** "Replace developers with AI."
@@ -797,6 +921,168 @@ The security model for AI-generated code is stricter than the one most teams app
 
 **Rebuttal:** See Section 14. Even at full unsubsidized pricing ($200/seat/month), the payback period is under 2 weeks. The question isn't whether you can afford to adopt — it's whether you can afford not to, while competitors accelerate.
 
+### "What about regulatory compliance?"
+
+**Rebuttal:** The EU AI Act (August 2026) makes structured AI adoption *mandatory*, not optional. Organizations already practicing SDD with traceability, human review gates, and audit trails are ahead of compliance requirements. Those using AI informally ("vibe coding") face regulatory exposure. See Section 8 for the full compliance checklist.
+
+---
+
+## 16. Agentic CI/CD — Integration Patterns
+
+### From static checks to continuous quality
+
+By 2026, 40% of enterprise applications have integrated task-specific AI agents into delivery pipelines. Agents are not just "checks" — they're active participants that diagnose failures, update specs, and self-heal broken tests.
+
+### Agentic CI/CD patterns
+
+| CI/CD Phase | Agentic Pattern | Practical Tooling |
+|-------------|----------------|-------------------|
+| Pull Request | Automated PR summarization & logic review | GitHub Actions + Claude Code |
+| Spec Validation | EARS-syntax compliance gate | Custom linting rules or spec validators |
+| Build Failures | Autonomous Root Cause Analysis (RCA) | Instana + AI Agent remediators |
+| Test Generation | Natural language to Playwright/Cypress | mabl AI Agent |
+| IaC Orchestration | Agent-led Terraform/Pulumi drift fix | Firefly AI |
+
+### Shift-Left Intelligence strategy
+
+1. **Pipeline Triggers**: Every commit triggers a "Diagnostic Agent" that analyzes the diff for architectural alignment with the specification repository — not just syntax errors.
+2. **Adaptive Quality Gates**: Agents evaluate deployment risk by batch. A visual regression on a low-traffic page gets flagged for review; a failure in checkout flow logic triggers an "Automated Deployment Block."
+3. **Autonomous Test Creation**: Engineers describe desired validation in natural language. The agent generates the e2e test and integrates it into the CI suite.
+4. **EARS Compliance Gate**: New PRs are validated against the project's EARS specifications. Requirements without matching tests are flagged.
+
+### Cost of AI in CI
+
+Heavy AI usage runs $100-200/developer/month in CI pipelines. For a 200-person team: $20,000-$40,000/month. **Mitigate with:**
+- **AI Gateways** for token spend monitoring and budget hierarchies
+- **Tiered agent usage**: Simple linting = local model; complex review = frontier model
+- **Caching**: Cache agent analysis for identical code patterns
+
+---
+
+## 17. Post-Deployment Monitoring & Observability
+
+### The non-deterministic reality
+
+AI-generated code exhibits different failure patterns than human-written code. Traditional APM (Application Performance Monitoring) is insufficient — teams need **observability that understands code behavior, not just uptime** to detect behavioral drift and reasoning failures.
+
+### AI-specific failure patterns
+
+| Pattern | Description | Detection |
+|---------|-------------|-----------|
+| **Correctness Decay** | Logic syntactically correct but semantically flawed for the business case | Property-based test monitoring in production |
+| **Prompt Regression** | Agent output quality degrades when spec context shifts | Before/after output comparison |
+| **Edge Case Blindness** | AI handles happy path but misses domain-specific edge cases | Canary deployment with ground-truth comparison |
+| **Pattern Overfitting** | AI replicates common patterns even when task requires different approach | Architecture review + diverse test scenarios |
+
+### Observability stack (2026)
+
+| Pillar | Strategy | Key Metrics |
+|--------|---------|-------------|
+| Decision Path Mapping | Trace full reasoning chain of agent decisions | Tool-use accuracy, goal completion rate |
+| Semantic Drift | Measure embedding distance between outputs over time | Cosine similarity vs. semantic baseline |
+| Cost Observability | Real-time token tracking per agent/task | Tokens per resolved issue, ROI per agent |
+| Anomaly Detection | Tag AI-generated changes, correlate with production incidents | AI-Attributed Change Failure Rate |
+
+**Key tools:** **Braintrust** (evaluation in production traces), **Arize Phoenix** (open-source drift detection), **Canary Agents** (compare AI-generated feature behavior against ground-truth responses).
+
+### Practical recommendations
+
+1. **Tag all AI-generated code** in VCS metadata (commit messages, PR labels) to enable incident correlation
+2. **Run canary deployments** for significant AI-generated features — route 5% of traffic, compare against baseline
+3. **Track AI Change Failure Rate** alongside standard DORA metrics
+4. **Monitor tokens-per-resolved-issue** to detect expensive agent loops
+5. **Log reasoning traces** for agentic decisions to enable forensic debugging post-incident
+
+---
+
+## 18. Domain-Specific Agent Patterns
+
+### Beyond generic coding agents
+
+Generic agents are being superseded by specialized "Domain Agents" that understand specific constraints of each technology stack.
+
+### Domain architecture matrix (Spring 2026)
+
+| Domain | Key Agent Pattern | Specific Tools | SDD Integration |
+|--------|------------------|---------------|-----------------|
+| **Frontend/UI** | Design-to-code pipelines; component-native integration | Puck AI, Vercel AI SDK | EARS for component behavior; Figma MCP for design tokens |
+| **Backend/API** | Spec-to-Controller; migration agents | AutoGen, OpenAI Agents SDK | OpenAPI specs → EARS → generated controllers |
+| **Data Engineering** | Semantic layer translation; quality enforcement | LanceDB, LlamaIndex.js, dbt-AI | EARS for data quality rules → dbt test generation |
+| **Infrastructure** | Policies-as-Code orchestration | Firefly AI, Terraform-AI, Crossplane | EARS for infra invariants → IaC modules |
+| **Mobile** | UI recorders and triagers | mabl AI Agent | Platform-specific EARS for iOS/Android |
+
+**Frontend highlight:** Design-to-code tools convert Figma URLs or screenshots into React/Tailwind code with **~90% accuracy**, maintaining design system tokens. Provide the agent with: component library as context, EARS behavioral specs, and Figma MCP for direct token extraction.
+
+**Data Engineering highlight:** Agents require a **Centralized Semantic Layer** to translate business intent into database queries — bypassing BI bottlenecks. EARS specs define data quality invariants that agents enforce through generated dbt tests.
+
+### Multimodal capabilities in development
+
+Modern VLMs (Gemini 3 Pro, Claude 4.6) can interpret visual inputs directly:
+
+| Capability | Accuracy | Use Case |
+|-----------|----------|----------|
+| Figma → React/Tailwind code | ~90% | Production component generation |
+| Screenshot → code | ~85% | Bug reproduction, UI cloning |
+| ERD → API + migrations | ~80% | Database-driven development |
+| Sequence diagram → implementation | ~75% | Workflow orchestration |
+| Whiteboard → EARS spec | ~70% | Architecture sketches → specifications (InfraSketch) |
+| Voice → specification | ~65% | Architect dictates requirements (Whisper-v4, emerging) |
+
+---
+
+## 19. Fallback & Failure Recovery Strategies
+
+### Defensive engineering for autonomous agents
+
+The industry standard for agent security is the **OWASP ASI08 guide**. Teams must implement systematic failure handling — not just "stop the agent if it's stuck."
+
+### Circuit breakers: hard limits
+
+| Threshold | Action | Rationale |
+|-----------|--------|-----------|
+| 10-15 reasoning cycles without resolution | Halt, escalate to human | Prevents infinite costly loops |
+| Token budget exceeded (>$50/task) | Pause, require human approval | Cost protection |
+| 3 consecutive test failures on same logic | Fallback to simpler approach | Prevents "fixing the fix" anti-pattern |
+| Destructive operation detected | Require explicit human confirmation | Safety gate |
+
+### Graceful degradation pattern
+
+```
+Frontier model fails → Retry with extended thinking
+  → Still fails → Fallback to simpler model (mid-tier OS model)
+    → Still fails → Fallback to template/scaffold generation
+      → Still fails → Manual coding (human takes over)
+```
+
+Each step is logged with reasoning traces for post-mortem analysis.
+
+### Debugging AI code: forensic approach
+
+| Traditional Debugging | AI Code Debugging |
+|----------------------|-------------------|
+| "Why did the developer write this?" | "Why did the agent decide this?" — check reasoning traces |
+| Fix the code directly | Fix the **spec/prompt** → regenerate → verify |
+| Debug through execution flow | Debug through the **decision chain** (what context did the agent see?) |
+| One-off fix | Update conventions to prevent same class of errors |
+
+**Key principle:** If an agent misunderstands a requirement, fix the **spec**, not the code. Manual edits to AI-generated code create "AI debt" — code nobody (including future agents) understands.
+
+### Context poisoning recovery
+
+1. **Detect**: Output quality suddenly degrades or contradicts known requirements
+2. **Diagnose**: Check which context files, MCP responses, or history introduced bad data
+3. **Recover**: Clear agent session, scrub vector store to "last known good" state
+4. **Prevent**: Tag context sources with timestamps; implement staleness checks; separate stable context (conventions) from volatile context (runtime data)
+
+### Model outage planning
+
+| Scenario | Response | Preparation |
+|----------|----------|-------------|
+| Primary provider down | Route to backup provider | Pre-configure fallback in AI Gateway |
+| All cloud models unavailable | Switch to local models | Maintain on-premise inference capability |
+| Rate limiting / throttling | Queue by task criticality | Token budget management |
+| API pricing spike | Shift low-complexity to cheaper models | Hybrid routing configuration |
+
 ---
 
 ## Quick Reference: Start Here Checklist
@@ -818,8 +1104,12 @@ The security model for AI-generated code is stricter than the one most teams app
 - [ ] **Adopt** SDD as default process for medium-to-large features (Section 2)
 - [ ] **Build** a spec template library from your completed specs (Section 13)
 - [ ] **Create** your first Agent Skill encoding a team-specific workflow (Section 3)
-- [ ] **Present** ROI data to leadership using the framework in Section 14
-- [ ] **Track** velocity, coverage, and defect metrics before vs after
+- [ ] **Set up** agentic CI/CD: PR review agent + EARS compliance gate (Section 16)
+- [ ] **Implement** AI change tagging in VCS for observability (Section 17)
+- [ ] **Present** ROI data to leadership using the TCO framework in Section 14
+- [ ] **Track** velocity, coverage, defect metrics, and AI Change Failure Rate
+- [ ] **Establish** circuit breakers: iteration thresholds and token budgets (Section 19)
+- [ ] **Review** regulatory compliance checklist — EU AI Act readiness (Section 8)
 
 ---
 

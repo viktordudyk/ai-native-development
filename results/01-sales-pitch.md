@@ -44,7 +44,9 @@ Three pressures are converging simultaneously:
 
 **3. The cost structure shift.** AI tooling costs $200-300/month per seat today, with vendors subsidizing at roughly 10x real cost to capture market share. Historically, tooling costs were negligible compared to developer salaries — AI fundamentally changes that equation. When subsidies end, organizations without efficient AI practices will face either significant cost spikes or competitive disadvantage. Even at future unsubsidized costs of thousands per seat, the productivity gains will justify the expense — but only for teams that know how to use these tools effectively.
 
-**The framing for leadership:** the riskiest option is inaction. Your competitors are compounding advantages every week.
+**4. The regulatory wave.** The EU AI Act becomes fully applicable on August 2, 2026. Article 50 requires that AI-generated code be marked in machine-readable format and detectable as synthetic content. If your AI-generated code is used in regulated products (medical, financial, critical infrastructure), it escalates to "high-risk" classification with rigorous risk management and human oversight requirements. Meanwhile, the US and EU maintain that AI-generated code without significant human creative input is not copyrightable — making SDD's "Human-Architected" model (human spec + AI execution + human review) the only defensible approach for IP protection.
+
+**The framing for leadership:** the riskiest option is inaction. Your competitors are compounding advantages every week while the compliance window for structured AI adoption is closing.
 
 ---
 
@@ -96,13 +98,13 @@ It replaces *typing*, not *thinking*. The role shifts from writing lines of code
 Copilot is Level 1 — autocomplete. What we're describing is Level 2 — autonomous execution of well-specified, bounded task atoms. The difference is spell-check versus a professional editor. The real value is in SDD + agent workflows, not inline suggestions.
 
 **"What about security and IP?"**
-Valid concern. The tooling landscape offers a spectrum: cloud services (most capable, requires trust) to on-premise local models (more private, less capable — local models lag 12+ months behind frontier). Enterprise-grade agents support data isolation. MCP enforces security policies programmatically — least privilege, explicit approvals for destructive operations, audit trails. Tools claiming high autonomy and broad access should be treated with maximum distrust and strict limits.
+Valid concern — and now a regulatory requirement. Enterprise AI tooling supports **layered privacy controls**: sensitive data is stripped before reaching cloud models, simple tasks route to local models (open-source models now match early GPT-4 quality), and complex reasoning goes to secure enterprise cloud instances. For air-gapped environments, on-premise GPU clusters provide full capability without any data leaving your network. MCP enforces security policies programmatically — least privilege, explicit approvals, audit trails. The EU AI Act requires traceability of all AI-generated code — SDD's specification-to-code chain provides this by design.
 
 **"What about hallucinations?"**
 SDD is specifically designed to eliminate this. EARS syntax removes specification ambiguity — the primary cause of hallucinations. Property-Based Testing generates thousands of scenarios to verify system invariants. The agent doesn't guess — it executes contracts. Context degradation is the main error source when requirements are known, and SDD's decomposition into small atoms (1k-3k lines) keeps context tight.
 
 **"This sounds expensive to adopt."**
-The adoption cost is primarily *mindset and process*, not tooling. Entry-level tools start at $20-100/month per developer. The ROI appears in the first sprint: tasks that took days complete in hours. Test coverage — previously the first thing cut under deadline pressure — becomes the cheapest part of development. Organizations report break-even within 2-4 weeks.
+The adoption cost is primarily *mindset and process*, not tooling. Entry-level tools start at $20-100/month per developer. The ROI appears in the first sprint: tasks that took days complete in hours. Test coverage — previously the first thing cut under deadline pressure — becomes the cheapest part of development. Organizations report break-even within 2-4 weeks. For long-term planning: even at full unsubsidized pricing, a 200-engineer organization achieves 20-40% operating cost reductions after an initial 3-6 month calibration period (McKinsey, 2026). On-premise model hosting shows up to 6x cost advantage per token at scale for high-throughput organizations. The detailed TCO framework is covered in the Technical Playbook (Section 14).
 
 ---
 
@@ -126,10 +128,11 @@ Never propose a big-bang transformation. Start small, prove value, expand:
 - Apply quality tiers: demos = trust AI, MVP = moderate review, production = full control
 
 ### Month 3+: Organizational Scaling
-- Company-wide specification standards
-- Internal skill libraries and reusable spec templates
-- SDLC integration (Jira workflows, CI/CD pipelines)
-- Measure and report: velocity gains, test coverage changes, defect rates, developer satisfaction
+- Company-wide specification standards and **shared specification libraries** — centralized templates, proven prompts, and architectural conventions reused across all teams
+- **Unified tool integrations** — one catalog of connected systems (Jira, GitHub, databases) with role-based access, replacing per-team setup
+- **AI-augmented delivery pipelines** — agents participate in CI/CD: automated PR review, spec compliance checks, intelligent build failure diagnosis, and test generation from natural language
+- Internal skill libraries and reusable templates shared through developer portals and **cross-team communities of practice**
+- Track **delivery efficiency** (value-added time / total time), onboarding speed, and technical debt reduction — not vanity metrics like tokens consumed
 
 ---
 
@@ -139,7 +142,11 @@ For C-level strategic thinking:
 
 **Time & Material is losing its meaning.** The same developer at the same skill level, with different AI provisioning, delivers vastly different value per hour. Raw time is becoming an unreliable unit of sale. The emerging model is **weighted time** — analogous to construction, where an excavator hour is priced as equipment + operator. Developer skill level + AI provisioning level = the new pricing unit.
 
-**The specification repository becomes core IP.** Not the code. Code can be regenerated from spec; institutional knowledge encoded in specifications cannot be shortcut. The spec repository becomes the single source of truth from which all artifacts — docs, designs, code, plans — are regenerable projections.
+**The specification repository becomes core IP.** Not the code. Code can be regenerated from spec; institutional knowledge encoded in specifications cannot be shortcut. The spec repository becomes the single source of truth from which all artifacts — docs, designs, code, plans — are regenerable projections. This is also the legally defensible model: AI-generated code alone is not copyrightable, but the human-authored specification that directs it is.
+
+**The hiring profile is shifting.** The demand for "pure coders" is declining, replaced by "Hybrid Professionals" and "AI-Native Architects" who link specification, architecture, and agentic workflows. Organizations that restructure now capture this talent; those that wait will compete for a shrinking pool of traditional developers at inflated costs.
+
+**Plan for the productivity dip.** McKinsey (2026) reports 20-40% operating cost reductions — but only after a 3-6 month calibration period where teams build Repository Context, refine conventions, and shift from coding to spec engineering. Organizations that expect instant results fail; those that invest in the transition compound.
 
 **First-mover advantage is real and compounding.** Every week of SDD practice builds organizational knowledge capital. Conventions refine, specs become templates, agent behavior improves. Month 6 looks nothing like Month 1 — the same task takes a fraction of the time. Competitors who start later cannot shortcut this accumulated advantage.
 
@@ -147,7 +154,7 @@ For C-level strategic thinking:
 
 ## Closing Line
 
-> "Full autonomy without clear boundaries is hype and a huge risk. Autonomous execution of a well-specified, bounded task is already a reliable practical reality. The question is whether your organization captures that reality by design — or discovers it by accident, after your competitors already have."
+> "The future of software is not just AI-driven — it is Human-Architected and Agent-Executed. Full autonomy without clear boundaries is hype and a huge risk. Autonomous execution of a well-specified, bounded task is already a reliable practical reality. The question is whether your organization captures that reality by design — or discovers it by accident, after your competitors already have."
 
 ---
 
