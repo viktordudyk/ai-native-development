@@ -14,7 +14,6 @@ The core of this repo: structured prompts that produce ready-to-use deliverables
 |---|--------|--------|----------|
 | 1 | [Sales Pitch](promts/01-sales-pitch.md) | [Strategic Sales Guideline](results/01-sales-pitch.md) | CTOs, VPs of Engineering, Tech Leads |
 | 2 | [Technical Best Practices](promts/02-technical-best-practices.md) | [Technical Playbook](results/02-technical-best-practices.md) | Senior developers, tech leads, architects |
-| 3 | [Fact-Check Deep Research](promts/03-fact-check-deep-research.md) | [2026 Audit & Fact-Check Report](results/03-fact-check-deep-research.md) | All — evidence base for claims in #1 and #2 |
 
 **How it works:** Each prompt is a detailed specification. Feed it to a frontier model (Claude, GPT, Gemini) and get a polished, evidence-backed document as output. The results are committed here as reference.
 
@@ -33,6 +32,7 @@ Practical notes on using AI in software development — cut through hype, focus 
 Additional research and strategic documents in [`docs/`](docs/):
 
 - [The Strategic Evolution of AI-Native Software Engineering](docs/The%20Strategic%20Evolution%20of%20AI-Native%20Software%20Engineering.md) — Deep research covering benchmarks, CI/CD, compliance, TCO, local models, org scaling
+- [2026 Audit & Fact-Check Report](docs/03-fact-check-deep-research.md) — Evidence base and verified sources for claims in the sales guideline and technical playbook
 - [Anthropic Build with Claude](docs/Anthropic%20Build%20with%20Claude%20-%20Developer%20Resources.md) — Developer resources reference
 - [How I Code With AI Agents (Spec-Driven Development)](docs/How%20I%20Code%20With%20AI%20Agents%20(Spec-Driven%20Development).md)
 
@@ -42,8 +42,8 @@ Additional research and strategic documents in [`docs/`](docs/):
 
 ```
 promts/          — Structured prompts (specifications for AI generation)
-results/         — Generated deliverables (sales pitch, technical playbook, fact-check report)
-docs/            — Article series, research, and reference materials
+results/         — Generated deliverables (sales pitch, technical playbook)
+docs/            — Article series, research, fact-check report, and reference materials
 ```
 
 ---
