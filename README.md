@@ -14,6 +14,7 @@ The core of this repo: structured prompts that produce ready-to-use deliverables
 |---|--------|--------|----------|
 | 1 | [Sales Pitch](promts/01-sales-pitch.md) | [Strategic Sales Guideline](results/01-sales-pitch.md) | CTOs, VPs of Engineering, Tech Leads |
 | 2 | [Technical Best Practices](promts/02-technical-best-practices.md) | [Technical Playbook](results/02-technical-best-practices.md) | Senior developers, tech leads, architects |
+| 3 | [Fact-Check Deep Research](promts/03-fact-check-deep-research.md) | [2026 Audit & Fact-Check Report](results/03-fact-check-deep-research.md) | All — evidence base for claims in #1 and #2 |
 
 **How it works:** Each prompt is a detailed specification. Feed it to a frontier model (Claude, GPT, Gemini) and get a polished, evidence-backed document as output. The results are committed here as reference.
 
@@ -41,7 +42,7 @@ Additional research and strategic documents in [`docs/`](docs/):
 
 ```
 promts/          — Structured prompts (specifications for AI generation)
-results/         — Generated deliverables (sales pitch, technical playbook)
+results/         — Generated deliverables (sales pitch, technical playbook, fact-check report)
 docs/            — Article series, research, and reference materials
 ```
 
