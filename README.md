@@ -25,7 +25,7 @@ The core of this repo: structured prompts that produce ready-to-use deliverables
 
 Practical notes on using AI in software development — cut through hype, focus on real-world usage. All articles are collected in a single document:
 
-- [AI-Native Development Article Series](docs/AI-Native-Development-Article-Series.md) — Foreword, AI as tool #2, language model basics, chat interaction, agents, extensibility, development processes, specification-driven development, model updates, and autonomous agent warnings.
+- [AI-Native Development Article Series](docs/AI-Native-Development-Article-Series.md) — A condensed, opinionated guide covering AI's role in development, how transformers work, agents and tools, MCP extensibility, corporate adoption, Specification Driven Development, and autonomy risks.
 
 ### Reference Materials
 
