@@ -79,7 +79,7 @@ Description → Decomposition → Validation → Living Updates
 
 ### EARS syntax — one effective spec language
 
-**EARS** (Easy Approach to Requirements Syntax), originally developed for automotive/aerospace requirements engineering, provides unambiguous requirements that map directly to test cases. It's one of several structured approaches (others include Given-When-Then, RFC 2119 keywords, or custom templates) — what matters most is consistency and precision:
+**EARS** (Easy Approach to Requirements Syntax), originally developed for automotive/aerospace requirements engineering, provides unambiguous requirements that map directly to test cases. EARS has moved from niche to mainstream in AI-native workflows — Amazon's Kiro IDE uses EARS-style specs as its native format, and GitHub's Spec-Kit adopted structured requirement templates directly influenced by EARS patterns. While alternatives exist (Given-When-Then, RFC 2119 keywords), EARS has emerged as the de facto standard for agent-consumable specifications:
 
 | Pattern | Template | Example |
 |---------|----------|---------|
@@ -392,7 +392,7 @@ Beyond testing individual features, high-performing teams establish **"Evaluatio
 | **Maintainability** | Readability, style adherence, documentation quality | LLM-as-judge scoring |
 | **Token Efficiency** | Cost and steps to reach a solution | Track tokens/resolved-issue |
 
-**Why public benchmarks aren't enough:** SWE-bench Verified scores continue to improve (frontier models reached ~70%+ in early 2026), but performance on private, zero-shot repositories drops significantly. Your internal eval on your codebase is the only metric that matters for your team.
+**Why public benchmarks aren't enough:** SWE-bench Verified has been deprecated due to confirmed data contamination — frontier models memorized solutions from training data, inflating scores to ~70%+. The replacement, **SWE-bench Pro** (curated by OpenAI, launched 2025), uses held-out tasks: frontier models score 43-46%, reaching ~57% with advanced scaffolding. Even SWE-bench Pro performance on private, zero-shot repositories drops significantly. Your internal eval on your codebase is the only metric that matters for your team.
 
 ---
 
@@ -471,12 +471,12 @@ When agents interact with external data (user input, API responses, database con
 The legal landscape has accelerated. Engineering teams must now address:
 
 **EU AI Act (fully applicable August 2, 2026):**
-- **Article 50**: Transparency obligations apply to AI systems generating synthetic content. While the exact scope for internal source code is still being interpreted, adopting practices like metadata tagging and VCS attribution of AI-generated code positions teams ahead of compliance requirements.
+- **Article 50**: Transparency obligations require disclosure when content is AI-generated. However, Article 50 **explicitly exempts** AI-assisted content that undergoes human review before publication. Internal source code passing through PR review workflows with human approval qualifies for this exemption. Teams should still maintain VCS attribution of AI-generated code as best practice for traceability.
 - **High-risk classification**: If AI-generated code is a safety component in regulated products (medical devices, critical infrastructure), Articles 8-15 apply — requiring rigorous risk management, data governance, and documented human oversight.
 - **Prohibited practices**: Systems engaging in harmful manipulation or social scoring are strictly banned.
 
 **IP and copyright:**
-The US Copyright Office has indicated that AI-generated code without significant human creative input may not be copyrightable. EU member states are developing similar (though not yet unified) positions. SDD's "Human-Architected" model (human spec → AI execution → human review) constitutes the strongest available argument for "creative expression" needed for copyright protection. Document the specification-to-code chain.
+The US Copyright Office (USCO) has ruled that AI-generated content without significant human creative input is **not copyrightable**. Critically, the USCO has indicated that the workflow of "human spec → AI execution → human review" alone is **insufficient** to establish copyright — the human must make substantive creative modifications to the AI output, not merely review and approve it. SDD's model provides the strongest available framework, but engineers must actively modify and shape the generated code (not just accept it) to establish the "creative expression" needed for copyright protection. EU member states are developing similar (though not yet unified) positions. Document the specification-to-code-to-modification chain.
 
 **Practical compliance checklist:**
 
@@ -486,7 +486,7 @@ The US Copyright Office has indicated that AI-generated code without significant
 | **PII sanitization** | Tenant-isolated inference gateway strips personal data before cloud LLM calls | GDPR |
 | **Vulnerability liability** | Machine-speed security scanning (Sonar, Snyk) on all AI-generated code | All |
 | **License tracking** | Observability layers to detect copyleft-licensed code (GPL, AGPL) in AI output | IP compliance |
-| **Code watermarking** | Machine-readable markers identifying AI-generated code in VCS metadata | EU AI Act (emerging best practice) |
+| **Code watermarking** | Machine-readable markers identifying AI-generated code in VCS metadata | EU AI Act (best practice; note Art. 50 exemption for human-reviewed code) |
 | **Human oversight** | Documented human review gates for all production code | EU AI Act Art. 14 |
 
 ---
@@ -511,7 +511,7 @@ The US Copyright Office has indicated that AI-generated code without significant
 | Pro plan with agent features | $100–300/seat | Full agent access, higher limits |
 | API-direct (heavy usage) | ~$1,000/month | Uncapped agent use, enterprise control |
 
-**The subsidy reality:** Current consumer pricing is believed to be below long-term sustainable levels as vendors capture market share. Organizations building dependency on $20/month pricing should plan for $100-300/month when pricing normalizes. Factor this into TCO calculations now.
+**The subsidy reality:** Current consumer pricing represents a roughly **10x subsidy** — vendors are spending $0.50-1.00+ per query on inference while charging $10-20/month (per "State of AI 2026" report, 90-98% below cost). Organizations building dependency on $20/month pricing should plan for $100-300/month when pricing normalizes. Factor this into TCO calculations now.
 
 ### Local models vs. cloud services
 
@@ -529,8 +529,8 @@ The gap between proprietary and open-source coding models is closing significant
 
 | Model Class | Notable Open-Source (Spring 2026) | Performance vs. Frontier | Practical Use Case |
 |------------|-------------------------------|----------------------|-------------------|
-| Frontier-Class | DeepSeek V3+ / Llama 4 | Approaching parity | Complex feature implementation |
-| Mid-Tier | Qwen 3 (72B) / Mistral Large | -10% to -20% | RAG-driven knowledge retrieval |
+| Frontier-Class | DeepSeek V3.2 / Qwen 3.5 | Approaching parity | Complex feature implementation |
+| Mid-Tier | Llama 4 (Scout/Maverick) / Mistral Large | -10% to -20% | RAG-driven knowledge retrieval |
 | Flash-Class | Codestral / Phi-4 | -20% to -30% | Low-latency autocomplete |
 
 Leading open-source models are closing the gap with proprietary frontier models on coding benchmarks, with some scoring comparably to earlier GPT-4 versions. Companies are successfully fine-tuning open-source models (using Unsloth or LoRA) on internal codebases, allowing a 70B parameter model to outperform a larger general model on domain-specific tasks.
@@ -540,7 +540,7 @@ Leading open-source models are closing the gap with proprietary frontier models 
 2. **Data Classification Routing**: Simple tasks → local models (Mistral 7B); complex reasoning → secure enterprise cloud instance
 3. **Local RAG + Cloud Reasoning**: Knowledge base (Qdrant) stays on-premise; only anonymized reasoning requests go to cloud
 
-Hardware cost for a capable on-premise GPU cluster (e.g., 8x NVIDIA B200) starts at ~$340,000 for GPUs alone, with total deployment costs (networking, storage, cooling, rack infrastructure) typically reaching $450,000-500,000. On-premise can show significant cost advantages per token at scale, though the magnitude depends heavily on utilization rates, staffing, and infrastructure costs.
+Hardware cost for a capable on-premise GPU cluster (e.g., 8x NVIDIA B200) starts at ~$360,000-400,000 for GPUs alone ($45-50k per B200), with total deployment costs (networking, storage, cooling, rack infrastructure) reaching approximately **$515,000** for an 8-GPU server (Lenovo ThinkSystem SR685a V4 reference configuration, 2026). At-scale TCO works out to approximately **$21.40/hour** fully loaded. On-premise shows an **8x cost advantage** over cloud IaaS and **18x over MaaS API pricing** at sustained utilization, with breakeven achieved in **under 4 months** (Lenovo 2026 TCO analysis).
 
 **Recommendation:** Use cloud services for primary development work. Use local models for autocomplete, sensitive code, and high-volume/low-complexity tasks. Route strategically based on data classification.
 
@@ -830,10 +830,10 @@ Where $Y$ is expected lifespan (typically 5 years) and $V_{res}$ is residual val
 
 | Cost Category | Cloud-Native (API/MaaS) | On-Premise (GPU Cluster) |
 |--------------|-------------------------|---------------------------|
-| Upfront CapEx | $0 | ~$450,000-500,000 (GPUs + infrastructure) |
+| Upfront CapEx | $0 | ~$515,000 (8x B200 server, fully configured) |
 | Annual Maintenance/Power | $0 | ~$100,000-130,000 |
 | Average Token Cost (Annual) | Varies by usage and provider | $0 (in-house inference) |
-| **5-Year Total Cost** | **Usage-dependent** | **~$950,000-1,150,000** |
+| **5-Year Total Cost** | **Usage-dependent** | **~$1,015,000-1,165,000** |
 | Cost Advantage | Flexibility, no upfront cost | Potentially significant per-token savings at high utilization |
 
 Cloud offers flexibility to access frontier reasoning models not yet available locally. On-premise offers predictable costs and data sovereignty. Most enterprises are adopting a **hybrid approach**: local models for high-volume/low-complexity + cloud for complex reasoning. The actual cost advantage of on-premise depends heavily on utilization rates, staffing costs, and infrastructure overhead — organizations should model their specific usage patterns before committing.
@@ -842,7 +842,7 @@ Cloud offers flexibility to access frontier reasoning models not yet available l
 
 | Hidden Cost | Description | Mitigation |
 |------------|-------------|------------|
-| **Productivity dip** | 3-6 month calibration period | Plan for it; don't expect instant results |
+| **Productivity dip** | 3-6 month calibration period (Gartner, 2025) | Plan for it; don't expect instant results |
 | **Context engineering** | Time preparing Repository Context and metadata | Front-load conventions files; compound over time |
 | **AI debt** | Code nobody understands because AI wrote it | Require spec-to-code traceability; mandate review |
 | **Debugging AI code** | Different failure patterns than human code | Train "forensic debugging" — use reasoning traces |
@@ -923,7 +923,7 @@ The security model for AI-generated code is stricter than the one most teams app
 
 ### "What about regulatory compliance?"
 
-**Rebuttal:** The EU AI Act (August 2026) creates new transparency and oversight requirements, particularly for AI used in high-risk applications (medical, financial, critical infrastructure). Organizations already practicing SDD with traceability, human review gates, and audit trails are well-positioned for compliance. Those using AI informally ("vibe coding") may face regulatory exposure in regulated industries. See Section 8 for the full compliance checklist.
+**Rebuttal:** The EU AI Act (August 2026) creates new transparency and oversight requirements, but Article 50 **explicitly exempts** AI-assisted content that undergoes human review — meaning internal code passing through PR workflows with human approval is exempt from watermarking/disclosure obligations. Organizations practicing SDD with traceability, human review gates, and audit trails are well-positioned for compliance. For copyright, note that the USCO requires engineers to make substantive creative modifications to AI output (not just review/approve) — SDD provides the framework, but active human shaping of code is essential. See Section 8 for the full compliance checklist.
 
 ---
 
@@ -931,7 +931,7 @@ The security model for AI-generated code is stricter than the one most teams app
 
 ### From static checks to continuous quality
 
-By 2026, a growing number of enterprise engineering organizations are integrating task-specific AI agents into delivery pipelines. Agents are not just "checks" — they're active participants that diagnose failures, update specs, and self-heal broken tests.
+By 2026, approximately **40% of enterprise** engineering organizations are integrating task-specific AI agents into delivery pipelines (Gartner, 2025 forecast for agentic AI in software engineering by 2028). Agents are not just "checks" — they're active participants that diagnose failures, update specs, and self-heal broken tests.
 
 ### Agentic CI/CD patterns
 
@@ -1011,7 +1011,7 @@ Generic agents are being superseded by specialized "Domain Agents" that understa
 | **Infrastructure** | Policies-as-Code orchestration | Firefly AI, Terraform-AI, Crossplane | EARS for infra invariants → IaC modules |
 | **Mobile** | UI recorders and triagers | mabl AI Agent | Platform-specific EARS for iOS/Android |
 
-**Frontend highlight:** Design-to-code tools can convert Figma URLs or screenshots into React/Tailwind code with reasonable accuracy for standard components, maintaining design system tokens. Provide the agent with: component library as context, behavioral specs, and Figma MCP for direct token extraction.
+**Frontend highlight:** Design-to-code tools can convert Figma URLs or screenshots into React/Tailwind code with **high visual accuracy** for standard components, maintaining design system tokens and layout fidelity. However, current tools achieve **near-zero functional completeness** — they produce static markup without business logic, event handling, or state management. Provide the agent with: component library as context, behavioral specs (EARS), and Figma MCP for direct token extraction. Treat design-to-code output as a visual scaffold that requires engineering to make functional.
 
 **Data Engineering highlight:** Agents require a **Centralized Semantic Layer** to translate business intent into database queries — bypassing BI bottlenecks. EARS specs define data quality invariants that agents enforce through generated dbt tests.
 
@@ -1034,7 +1034,7 @@ Modern VLMs (vision-language models) can interpret visual inputs directly. Accur
 
 ### Defensive engineering for autonomous agents
 
-The industry standard for agent security draws from guidelines like the **OWASP Top 10 for LLM Applications** and emerging agent-specific frameworks. Teams must implement systematic failure handling — not just "stop the agent if it's stuck."
+The industry standard for agent security draws from the **OWASP Top 10 for LLM Applications** and the newer **OWASP Top 10 for Agentic Applications (2026)** — which includes **ASI08: Cascading Failures**, specifically addressing failure propagation in multi-agent systems. Teams must implement systematic failure handling — not just "stop the agent if it's stuck."
 
 ### Circuit breakers: hard limits
 
