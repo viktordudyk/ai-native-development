@@ -11,7 +11,13 @@
 
 **Speech:**
 
-Good [morning/afternoon]. I'm [name], and today I want to talk about something that's no longer theoretical — it's operational. The shift to AI-native engineering.
+## Slide 1 — Title: "The AI-Native Engineering Shift" (~1.5 min)
+
+**Speech:**
+
+Good [morning/afternoon]. I'm [name], a Project Architect, and today I want to talk about something that's no longer theoretical — it's operational. The shift to AI-native engineering.
+
+I've been working with AI-assisted development since the early days of Claude Sonnet 3 — and I've watched the tooling evolve from "interesting autocomplete" to something fundamentally different. When Opus 4.5 was released in December, I made the full transition to AI-native development — spec-driven workflows, agentic execution, the whole discipline. So what I'm presenting today isn't research I've read. It's how I actually work, every day, on production systems.
 
 I specifically chose the word "shift" — not revolution, not disruption — because what I'll show you is a disciplined, measurable transition from how we build software today to how the most effective teams are already building it.
 
