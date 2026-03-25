@@ -8,7 +8,7 @@
 
 ## Speech
 
-This is what we've built — the AI-Native Software Development Lifecycle. Not a concept — an operational workflow we run in production. We've assembled blueprints and agentic configurations on this exact pattern that generate working product from structured requirements.
+This is what we've built — the AI-Native Software Development Lifecycle. Not a concept — an operational workflow we run in production. We've developed blueprints and agentic configurations on this exact pattern that generate working product from structured requirements.
 
 ---
 
@@ -20,7 +20,7 @@ Let me walk you through how we've structured this, starting at the top — the *
 
 That's why we structure context into three tiers:
 
-- **Persistent context** — your problem and solution canvas, engineering guidelines, brand guidelines, user demographics, product templates. Things that never change sprint to sprint.
+- **Persistent context** — the problem and solution canvas, engineering guidelines, brand guidelines, user demographics, product templates. Things that never change sprint to sprint.
 - **System context** — feature-product dependencies, data model, architecture, APIs. The structural skeleton.
 - **Feature-product context** — the specific problem statement, acceptance scenarios, and requirements for what you're building right now.
 
