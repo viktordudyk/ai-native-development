@@ -288,3 +288,26 @@ Dark theme slides — test brightness and contrast in the actual presentation ro
 - `results/02-technical-best-practices.md` — Technical depth for follow-up questions
 - `docs/The Strategic Evolution of AI-Native Software Engineering.md` — TCO analysis, compliance details
 - `docs/AI-Native-Development-Article-Series.md` — Foundational concepts for deep technical Q&A
+
+---
+
+## Quick Reference: Model Recommendations (Spring 2026)
+
+### Local Autocomplete (Flash-Class)
+- **Phi-4** (14B, MIT) — best for sensitive code, instant completions
+- **Mistral 7B** (Apache 2.0) — lightest option, runs on consumer GPUs
+- **Codestral** (22B) — strongest code-specific autocomplete (check commercial license)
+
+### Local Mid-Tier (Real Work)
+- **Qwen 3 72B** (Apache 2.0) — best quality/cost ratio for self-hosting
+- **Llama 4 Scout** (109B MoE) — Meta's workhorse, strong coding
+
+### Local Frontier-Class (Replace Cloud)
+- **DeepSeek V3.2** (671B MoE, MIT) — closest to Claude/GPT quality, fully open
+- **Qwen 3.5** (235B MoE, Apache 2.0) — second-best open frontier model
+- **Llama 4 Maverick** (400B MoE) — comparable to early GPT-5
+
+### Cloud Frontier (Complex Reasoning)
+- **Claude Opus 4.6** — strongest agentic coding
+- **GPT-5.3 Codex** — Copilot's backbone
+- **Gemini 3.1 Pro** — best for Google ecosystem
