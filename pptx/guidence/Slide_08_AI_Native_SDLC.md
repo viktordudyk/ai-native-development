@@ -8,7 +8,7 @@
 
 ## Speech
 
-This is the AI-Native Software Development Lifecycle. Not a concept — an operational workflow. There are already production blueprints built on this exact pattern, with agentic configurations that generate working product from structured requirements.
+This is what we've built — the AI-Native Software Development Lifecycle. Not a concept — an operational workflow we run in production. We've assembled blueprints and agentic configurations on this exact pattern that generate working product from structured requirements.
 
 ---
 
@@ -16,15 +16,15 @@ This is the AI-Native Software Development Lifecycle. Not a concept — an opera
 
 > *Point to the three boxes at the top of the diagram*
 
-Let me walk you through it, starting at the top — the **three context layers**. This is critical. Models are still context-limited. That's the fundamental constraint. So context must be actively managed, not dumped in randomly. If you just write flat markdown requirement files, it becomes unmanageable almost immediately — there are simply too many requirements for a model to process coherently.
+Let me walk you through how we've structured this, starting at the top — the **three context layers**. This is critical. Models are still context-limited. That's the fundamental constraint. So we manage context deliberately — not dumped in randomly. If you just write flat markdown requirement files, it becomes unmanageable almost immediately — there are simply too many requirements for a model to process coherently.
 
-That's why context is structured into three tiers:
+That's why we structure context into three tiers:
 
 - **Persistent context** — your problem and solution canvas, engineering guidelines, brand guidelines, user demographics, product templates. Things that never change sprint to sprint.
 - **System context** — feature-product dependencies, data model, architecture, APIs. The structural skeleton.
 - **Feature-product context** — the specific problem statement, acceptance scenarios, and requirements for what you're building right now.
 
-> **Key point to emphasize:** Context management is not optional. It's the primary engineering discipline in AI-native development. Get this wrong and everything downstream degrades.
+> **Key point to emphasize:** In our approach, context management is not optional — it's the primary engineering discipline. Get this wrong and everything downstream degrades.
 
 ---
 
@@ -32,21 +32,21 @@ That's why context is structured into three tiers:
 
 > *Walk clockwise through the agents starting from bottom-left*
 
-**Step 1 — Spec Agent** (human co-authoring). It defines the feature-product boundary, the unit-of-value architecture, transforms your prompt into a structured model, and scores for ambiguity, completeness, and consistency. You don't hand this off blindly — the human architects the spec, the agent structures it.
+**Step 1 — Spec Agent** (human co-authoring). This is where we start. It defines the feature-product boundary, the unit-of-value architecture, transforms the prompt into a structured model, and scores for ambiguity, completeness, and consistency. We don't hand this off blindly — our architects own the spec, the agent structures it.
 
-**Step 2 — Architecture Agent.** Stack and framework selection, architecture-defining constraints, APIs, data models. This feeds the structural decisions.
+**Step 2 — Architecture Agent.** Stack and framework selection, architecture-defining constraints, APIs, data models. We use this to feed the structural decisions into the pipeline.
 
-**Step 3 — Test Design Agent** (human co-authoring). This is where most amateurs get it wrong. It generates acceptance tests from requirements, E2E and integration tests, and proof-of-concept tests.
+**Step 3 — Test Design Agent** (human co-authoring). This is where we see most teams get it wrong. In our workflow, it generates acceptance tests from requirements, E2E and integration tests, and proof-of-concept tests.
 
 > **Pause here and deliver this with conviction:**
 
-Notice the order: **tests come from requirements, before a single line of code is written.** Not the other way around. The popular advice of "requirements → code → unit tests on code" is fundamentally backwards. You test the spec, not the implementation.
+Notice the order we enforce: **tests come from requirements, before a single line of code is written.** Not the other way around. The popular advice of "requirements → code → unit tests on code" is fundamentally backwards. We test the spec, not the implementation.
 
-**Step 4 — Code & Review & Test.** Autonomous code generation, code review, test execution. This is where the agent does the heavy lifting.
+**Step 4 — Code & Review & Test.** Autonomous code generation, code review, test execution. This is where we let the agent do the heavy lifting.
 
-**Step 5 — Observability.** Readiness reports, consumption metrics, monitoring. You need to see what's happening.
+**Step 5 — Observability.** Readiness reports, consumption metrics, monitoring. We need visibility into what's happening at every stage.
 
-And underpinning everything — the **Orchestration Agent** that coordinates the entire flow.
+And underpinning everything — the **Orchestration Agent** that we use to coordinate the entire flow.
 
 ---
 
@@ -54,7 +54,7 @@ And underpinning everything — the **Orchestration Agent** that coordinates the
 
 > *This analogy makes the abstract concrete — use it confidently*
 
-The analogy is a modern car and an OEM service center. They don't repair individual parts — they replace the entire module. SDD works the same way. Software should be built so that modules can be regenerated entirely from spec. If a module breaks, you don't debug it — you regenerate it.
+Here's how we think about it. A modern car at an OEM service center — they don't repair individual parts. They replace the entire module. We apply the same principle to software. We build it so that modules can be regenerated entirely from spec. If a module breaks, we don't debug it — we regenerate it.
 
 ---
 
@@ -62,11 +62,11 @@ The analogy is a modern car and an OEM service center. They don't repair individ
 
 > *Point to the red-dashed "Human co-authoring" boxes and the Production Approval Gate*
 
-But notice the red-dashed boxes: **Human co-authoring** on the Spec Agent and Test Design Agent. And a **Production Approval Gate** with human sign-off — readiness report check, stats and metrics analysis, risk assessment, and a 5-minute smoke test.
+But notice the red-dashed boxes — this is deliberate. We keep **Human co-authoring** on the Spec Agent and Test Design Agent. And we enforce a **Production Approval Gate** with human sign-off — readiness report check, stats and metrics analysis, risk assessment, and a 5-minute smoke test.
 
-You still need human gates, for many reasons. IP ownership requires human creative decisions. Quality assurance requires human judgment. And practically — the last known-good production build is always preserved as your safety net.
+We insist on these human gates for multiple reasons. IP ownership requires human creative decisions. Quality assurance requires human judgment. And practically — we always preserve the last known-good production build as a safety net.
 
-This is not full autonomy. This is **structured autonomy with human control at the critical junctures**.
+This is not full autonomy. This is what we propose: **structured autonomy with human control at the critical junctures**.
 
 ---
 
