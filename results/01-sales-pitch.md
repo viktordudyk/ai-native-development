@@ -4,13 +4,13 @@
 
 **Audience:** CTOs, VPs of Engineering, Tech Leads — particularly those who may have tried Copilot-style tools and concluded "AI coding is overhyped."
 
-**As of:** March 2026
+**As of:** April 2026 (Claude Opus 4.7 / GPT-5 era)
 
 ---
 
 ## Opening: The Shift They're Already Behind On
 
-AI in software development is no longer experimental, optional, or a productivity "nice-to-have." As of spring 2026, AI is the most important development tool after the engineer's own judgment — more impactful than the IDE, the framework, or the language. Teams that adopted structured AI practices 12 months ago report delivering at 2-5x the speed of traditional teams for well-specified tasks, with comparable or better quality — though net delivery velocity depends on optimized review workflows and automated testing. GitHub's 2026 telemetry shows autonomous agent mode achieving >50% code acceptance on multi-file pull requests. The gap is compounding, not closing.
+AI in software development is no longer experimental, optional, or a productivity "nice-to-have." As of April 2026, AI is the most important development tool after the engineer's own judgment — more impactful than the IDE, the framework, or the language. Teams that adopted structured AI practices 12+ months ago report delivering at 2-5x the speed of traditional teams for well-specified tasks, with comparable or better quality — though net delivery velocity depends on optimized review workflows and automated testing. GitHub's 2026 telemetry shows autonomous agent mode achieving >50% code acceptance on multi-file pull requests. Frontier models (Claude Opus 4.7, GPT-5, Gemini 3) now reliably complete multi-file, multi-hour engineering tasks when given a clear spec. The gap is compounding, not closing.
 
 This isn't a bet on the future. The era when these tools were toys has ended, and the period when using them was optional has ended as well.
 
@@ -44,7 +44,7 @@ Three pressures are converging simultaneously:
 
 **3. The cost structure shift.** AI tooling ranges from $10-20/month for individual pro plans to $40-200/month for enterprise tiers with full agent capabilities. Vendors are subsidizing 90-98% of true compute costs to capture market share. When subsidies normalize, organizations without efficient AI practices will face significant cost spikes or competitive disadvantage. Even at higher future pricing, the productivity gains justify the expense — but only for teams that know how to use these tools effectively.
 
-**4. The regulatory wave.** The EU AI Act becomes fully applicable August 2, 2026. Standard software engineering workflows with PR reviews are exempt from watermarking obligations (Article 50 exemption for human-reviewed content). But organizations using AI in regulated products (medical, financial, critical infrastructure) face "high-risk" classification requiring documented human oversight. On the IP front: AI-generated code without significant human creative modification is not copyrightable (US Copyright Office, 2025). Engineers must actively reshape AI output — not just review and approve it — to claim IP protection. SDD's emphasis on human architectural decisions provides the strongest framework for this.
+**4. The regulatory wave.** The EU AI Act becomes fully applicable **August 2, 2026 — roughly 100 days away**. Standard software engineering workflows with PR reviews are exempt from watermarking obligations (Article 50 exemption for human-reviewed content). But organizations using AI in regulated products (medical, financial, critical infrastructure) face "high-risk" classification requiring documented human oversight. On the IP front: AI-generated code without significant human creative modification is not copyrightable (US Copyright Office, 2025). Engineers must actively reshape AI output — not just review and approve it — to claim IP protection. SDD's emphasis on human architectural decisions provides the strongest framework for this.
 
 **The framing for leadership:** the riskiest option is inaction. Your competitors are compounding advantages every week while the compliance window for structured AI adoption is closing.
 

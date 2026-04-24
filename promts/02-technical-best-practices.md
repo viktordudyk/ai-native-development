@@ -88,7 +88,7 @@ The guide should cover the following sections, each with **concrete examples, be
 - MCP security model: OAuth/OIDC, least privilege, sandbox writes, audit trails
 - License risk: LLMs may generate code resembling non-compliant licenses
 - Prompt injection defense
-- What "full autonomy" actually means in Spring 2026 (bounded + well-specified atoms, not sci-fi)
+- What "full autonomy" actually means in April 2026 (bounded + well-specified atoms, not sci-fi)
 
 #### 9. Measurable Impact — Real Numbers
 - Code generation: ~10% of traditional time

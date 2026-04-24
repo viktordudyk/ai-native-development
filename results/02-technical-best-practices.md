@@ -4,7 +4,7 @@
 
 **Audience:** Senior developers, tech leads, architects — people who want patterns they can try today.
 
-**As of:** March 2026
+**As of:** April 2026 (Claude Opus 4.7 / GPT-5 / Gemini 3 era)
 
 ---
 
@@ -441,13 +441,13 @@ Domain-Driven Design principles map perfectly to AI-native development:
 
 3. **Treat agent output like junior developer output.** Review everything. Trust nothing implicitly. The model is confident even when wrong.
 
-### Autonomous agent reality check (Spring 2026)
+### Autonomous agent reality check (April 2026)
 
 The promise: *"Fully autonomous agents that build complete features unsupervised."*
 
-The reality: **Practical autonomy = well-specified, tightly bounded atoms.** Full autonomy across complex multi-system features is still closer to fantasy than production reality. The agents that work are those given:
+The reality: **Practical autonomy = well-specified, tightly bounded atoms.** Even with Claude Opus 4.7 (1M context), GPT-5, and Gemini 3 on the table, full autonomy across complex multi-system features is still closer to fantasy than production reality — frontier models now complete multi-hour, multi-file tasks reliably, but only when scope is bounded and feedback loops are tight. The agents that work are those given:
 - Clear specifications (EARS / SDD)
-- Bounded scope (fits in context)
+- Bounded scope (fits in context — 1M-token windows help, but don't replace decomposition)
 - Self-validation tools (tests, linters)
 - Human gates at critical decision points
 
@@ -466,11 +466,11 @@ When agents interact with external data (user input, API responses, database con
 - Use output parsing with strict schemas
 - Monitor agent actions for unexpected patterns
 
-### Regulatory compliance (Spring 2026)
+### Regulatory compliance (April 2026)
 
 The legal landscape has accelerated. Engineering teams must now address:
 
-**EU AI Act (fully applicable August 2, 2026):**
+**EU AI Act (fully applicable August 2, 2026 — ~100 days out):**
 - **Article 50**: Transparency obligations require disclosure when content is AI-generated. However, Article 50 **explicitly exempts** AI-assisted content that undergoes human review before publication. Internal source code passing through PR review workflows with human approval qualifies for this exemption. Teams should still maintain VCS attribution of AI-generated code as best practice for traceability.
 - **High-risk classification**: If AI-generated code is a safety component in regulated products (medical devices, critical infrastructure), Articles 8-15 apply — requiring rigorous risk management, data governance, and documented human oversight.
 - **Prohibited practices**: Systems engaging in harmful manipulation or social scoring are strictly banned.
@@ -523,14 +523,14 @@ The US Copyright Office (USCO) has ruled that AI-generated content without signi
 | Cost at scale | Per-token | Hardware capex |
 | Best for | Production work, complex tasks | Sensitive code, offline use, autocomplete |
 
-**Open-source model trajectory (Spring 2026):**
+**Open-source model trajectory (April 2026):**
 
-The gap between proprietary and open-source coding models is closing significantly. A **Hybrid Strategy** has become the enterprise standard:
+The gap between proprietary and open-source coding models is closing significantly. A **Hybrid Strategy** has become the enterprise standard — though the frontier (Claude Opus 4.7, GPT-5, Gemini 3) is still ~6-9 months ahead of the best open weights on complex agentic tasks:
 
-| Model Class | Notable Open-Source (Spring 2026) | Performance vs. Frontier | Practical Use Case |
+| Model Class | Notable Open-Source (April 2026) | Performance vs. Frontier | Practical Use Case |
 |------------|-------------------------------|----------------------|-------------------|
-| Frontier-Class | DeepSeek V3.2 / Qwen 3.5 | Approaching parity | Complex feature implementation |
-| Mid-Tier | Llama 4 (Scout/Maverick) / Mistral Large | -10% to -20% | RAG-driven knowledge retrieval |
+| Frontier-Class | DeepSeek V3.2 / Qwen 3.5 Coder | Approaching parity on single-turn coding; lags on long-horizon agentic work | Complex feature implementation |
+| Mid-Tier | Llama 4 (Scout/Maverick) / Mistral Large 3 | -10% to -20% | RAG-driven knowledge retrieval |
 | Flash-Class | Codestral / Phi-4 | -20% to -30% | Low-latency autocomplete |
 
 Leading open-source models are closing the gap with proprietary frontier models on coding benchmarks, with some scoring comparably to earlier GPT-4 versions. Companies are successfully fine-tuning open-source models (using Unsloth or LoRA) on internal codebases, allowing a 70B parameter model to outperform a larger general model on domain-specific tasks.
@@ -548,16 +548,16 @@ Hardware cost for a capable on-premise GPU cluster (e.g., 8x NVIDIA B200) starts
 
 ## 10. Tool Comparison Matrix
 
-### Agent-capable development tools (Spring 2026)
+### Agent-capable development tools (April 2026)
 
 | Tool | Best for | Strengths | Weaknesses |
 |------|---------|-----------|------------|
-| **GitHub Copilot** | Teams on VS Code | Native integration, covers most IDEs, external agent support, strong inline | Multi-file changes lag behind, fewer tool scenarios, less model choice |
-| **Cursor** | Agent-first workflows | Best agent core, proven plan→edit→check loop, fast autocomplete, wide model selection | Separate IDE, extension compatibility issues, team adoption friction |
-| **Claude Code (CLI)** | CI/CD, remote, power users | IDE-agnostic, runs remotely/headless, gets features first, strongest console agent | CLI less comfortable for visual workflows, steeper learning curve |
+| **GitHub Copilot** | Teams on VS Code | Native integration, covers most IDEs, external agent support, strong inline; "Coding Agent" (async multi-file) now GA | Multi-file changes still trail specialized agents, less model choice than Cursor |
+| **Cursor** | Agent-first workflows | Best agent core, proven plan→edit→check loop, fast autocomplete, wide model selection (Opus 4.7, GPT-5, Gemini 3) | Separate IDE, extension compatibility issues, team adoption friction |
+| **Claude Code (CLI + VS Code/JetBrains extensions + web/desktop)** | CI/CD, remote, power users; also strong in-IDE now | IDE-agnostic, runs remotely/headless, first to get Anthropic features (Skills, hooks, sub-agents, 1M-token context on Opus 4.7), strongest console agent, native extensions for VS Code and JetBrains | Config/learning curve; premium pricing for heavy use |
 | **Windsurf** | Agent-curious teams | Agent-first orientation, IDE plugins for gradual adoption | Extension compatibility still maturing |
-| **Gemini CLI** | Google ecosystem teams | Strong integration with Google Cloud, competitive quality | Newer ecosystem, fewer community resources |
-| **OpenAI Codex** | OpenAI ecosystem teams | Comparable strength to Claude Code, wide API compatibility | New entrant in agent space |
+| **Gemini CLI / Jules** | Google ecosystem teams | Strong integration with Google Cloud; Gemini 3 quality competitive; Jules async agent | Newer ecosystem, fewer community resources |
+| **OpenAI Codex (CLI + Cloud)** | OpenAI ecosystem teams | Comparable strength to Claude Code, wide API compatibility, GPT-5 quality | Newer agent entrant; MCP support still catching up |
 
 ### Decision matrix
 
@@ -1001,7 +1001,7 @@ AI-generated code exhibits different failure patterns than human-written code. T
 
 Generic agents are being superseded by specialized "Domain Agents" that understand specific constraints of each technology stack.
 
-### Domain architecture matrix (Spring 2026)
+### Domain architecture matrix (April 2026)
 
 | Domain | Key Agent Pattern | Specific Tools | SDD Integration |
 |--------|------------------|---------------|-----------------|

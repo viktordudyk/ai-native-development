@@ -12,7 +12,7 @@ This document is the **opening artifact** in a sales conversation with engineeri
 - Work as a standalone read that moves a skeptical CTO from "what is this?" to "let's pilot it"
 - Be reusable across different organizations, industries, and team sizes
 - Be grounded in specific numbers, benchmarks, and real-world patterns — not buzzwords
-- Reflect the March 2026 state of the industry (post-GPT-5 / Claude 4.6 era)
+- Reflect the April 2026 state of the industry (post-GPT-5 / Claude Opus 4.7 era)
 
 ### Target Audience
 
