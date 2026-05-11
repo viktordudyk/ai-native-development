@@ -19,6 +19,21 @@ The core of this repo: structured prompts that produce ready-to-use deliverables
 
 ---
 
+## Questions for the Team
+
+Principal-dev-level questions to clear with leadership before going to market with AI SDLC Practice. Engineering-first tone, no marketing fluff.
+
+| File | Description |
+|------|-------------|
+| [to_ask/top-10-questions.md](to_ask/top-10-questions.md) | Top 10 questions grouped in 7 categories (EN) |
+| [to_ask/all-questions.md](to_ask/all-questions.md) | Full 41-question set grouped in 8 categories (EN) |
+| [to_ask/ua/top-10-questions.md](to_ask/ua/top-10-questions.md) | Топ 10 питань — українська версія |
+| [to_ask/ua/all-questions.md](to_ask/ua/all-questions.md) | Повний перелік питань — українська версія |
+
+**Groups covered:** offering scope · SDD methodology & behavior layers · quality and evidence · infrastructure & models · tooling and portability · team composition & multi-team governance · security and compliance · commercial model.
+
+---
+
 ## Documentation
 
 ### Article Series
@@ -43,6 +58,7 @@ Additional research and strategic documents in [`docs/`](docs/):
 ```
 promts/          — Structured prompts (specifications for AI generation)
 results/         — Generated deliverables (sales pitch, technical playbook)
+to_ask/          — Questions for leadership before going to market (EN + UA)
 docs/            — Article series, research, fact-check report, and reference materials
 ```
 
@@ -52,6 +68,7 @@ docs/            — Article series, research, fact-check report, and reference 
 
 1. **For leadership buy-in** → Read [results/01-sales-pitch.md](results/01-sales-pitch.md)
 2. **For engineering teams** → Read [results/02-technical-best-practices.md](results/02-technical-best-practices.md)
-3. **For deep understanding** → Start with [docs/AI-Native-Development-Article-Series.md](docs/AI-Native-Development-Article-Series.md)
+3. **Before pitching to clients** → Review [to_ask/top-10-questions.md](to_ask/top-10-questions.md) and clear them with leadership
+4. **For deep understanding** → Start with [docs/AI-Native-Development-Article-Series.md](docs/AI-Native-Development-Article-Series.md)
 
 Feedback and concise, opinionated notes are welcome.
