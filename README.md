@@ -27,6 +27,7 @@ Principal-dev-level questions to clear with leadership before going to market wi
 |------|-------------|
 | [to_ask/top-10-questions.md](to_ask/top-10-questions.md) | Top 10 questions grouped in 7 categories (EN) |
 | [to_ask/all-questions.md](to_ask/all-questions.md) | Full 30-question set grouped in 8 categories (EN) |
+| [to_ask/answers/](to_ask/answers/) | Research and frameworks answering the top 10 — see [answers/README.md](to_ask/answers/README.md) |
 | [to_ask/ua/top-10-questions.md](to_ask/ua/top-10-questions.md) | Топ 10 питань — українська версія |
 | [to_ask/ua/all-questions.md](to_ask/ua/all-questions.md) | Повний перелік питань — українська версія |
 
