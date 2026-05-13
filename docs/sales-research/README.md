@@ -1,6 +1,6 @@
 # Answers — Research & Frameworks for Top 10 Questions
 
-Each file answers one of the [top 10 questions](../top-10-questions.md) with current (2025-2026) best practices, concrete tooling, and cited sources. Internal-only questions (#1, #6) ship as frameworks to collect the answer from the team rather than research.
+Each file answers one of the top 10 questions an engineering lead asks before adopting AI SDLC practice — current (2025-2026) best practices, concrete tooling, and cited sources. Internal-only questions (#1, #6) ship as frameworks to collect the answer from the team rather than research.
 
 | # | File | Type | Topic | Highlights |
 |---|------|------|-------|------------|
@@ -28,4 +28,4 @@ Each file answers one of the [top 10 questions](../top-10-questions.md) with cur
 
 - **Confidential metrics** from our internal case study — not used in any research-side question.
 - **Proprietary tooling stack** — neither named nor implied. Examples in answers use public tool names as illustrations.
-- **Sales positioning** — the research is technical, not commercial framing. For sales angles, see [top-10-questions.md](../top-10-questions.md) commercial group.
+- **Sales positioning** — the research is technical, not commercial framing. For sales angles, see the commercial-model file (10-commercial-model.md) and the sales pitch at [results/01-sales-pitch.md](../../results/01-sales-pitch.md).

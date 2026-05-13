@@ -12,7 +12,7 @@ This document is the **opening artifact** in a sales conversation with engineeri
 - Work as a standalone read that moves a skeptical CTO from "what is this?" to "let's pilot it"
 - Be reusable across different organizations, industries, and team sizes
 - Be grounded in specific numbers, benchmarks, and real-world patterns — not buzzwords
-- Reflect the April 2026 state of the industry (post-GPT-5 / Claude Opus 4.7 era)
+- Reflect the May 2026 state of the industry (post-GPT-5 / Claude Opus 4.7 era)
 
 ### Target Audience
 
@@ -121,6 +121,6 @@ The guideline should follow this structure, each section with clear purpose:
 - Generic fluff — every sentence should either inform, persuade, or move to action
 
 ### Source Material
-- Article series in `en/` folder (ai_0.md through ai_8.md) — realistic, practitioner-grounded perspective
-- `docs/03-future-business-model-vision.md` — business model implications of AI-native development
-- `external info/` — Anthropic developer documentation, Spec-Driven Development references
+- `docs/article-series.md` — practitioner-grounded article series on AI-native development
+- `docs/strategic-evolution-2026.md` — business model and strategic implications
+- `docs/anthropic-developer-resources.md` — Anthropic developer documentation reference

@@ -866,8 +866,8 @@ The key insight: each node is **intelligent, not scripted.** Traditional CI/CD r
 ## Source Material for Q&A Prep
 - `results/01-sales-pitch.md` — Full sales narrative with objection handling
 - `results/02-technical-best-practices.md` — Technical depth for follow-up questions
-- `docs/The Strategic Evolution of AI-Native Software Engineering.md` — TCO analysis, compliance details
-- `docs/AI-Native-Development-Article-Series.md` — Foundational concepts for deep technical Q&A
+- `docs/strategic-evolution-2026.md` — TCO analysis, compliance details
+- `docs/article-series.md` — Foundational concepts for deep technical Q&A
 
 ---
 

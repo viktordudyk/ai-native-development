@@ -1,6 +1,6 @@
 ---
 name: repo-docs
-description: Writing and editing documentation in this repo (AI SDLC consulting practice). Use whenever you create, rewrite, or review any .md or .txt file under docs/, to_ask/, results/, promts/, integrations/, pptx/, or the repo root. Covers the house writing style (no AI slop), where docs go, audience, and language conventions. Trigger on any prose-writing task in this repo, even short edits.
+description: Writing and editing documentation in this repo (AI SDLC consulting practice). Use whenever you create, rewrite, or review any .md or .txt file under docs/, results/, promts/, integrations/, pptx/, or the repo root. Covers the house writing style (no AI slop), where docs go, audience, and language conventions. Trigger on any prose-writing task in this repo, even short edits.
 ---
 
 # Writing docs in this repo
@@ -32,8 +32,10 @@ If asked to "humanize" or "fix AI slop" in an existing doc, rewrite aggressively
 
 ## Where things live
 
-- `docs/` — long-form articles, research, frameworks. Mix of English and Ukrainian. The Ukrainian ones have Cyrillic filenames.
-- `to_ask/` — open questions for the team or for clients. Short, punchy. `to_ask/ua/` is the Ukrainian translations. `to_ask/answers/` is responses.
+- `docs/` — long-form articles, research, frameworks (English by default).
+  - `docs/sales-research/` — top-10-question research for client calls.
+  - `docs/ua/` — Ukrainian translations and originals.
+  - `docs/_sources/` — raw transcripts kept for citation, not for daily reading.
 - `results/` — finished outputs from research or analysis.
 - `promts/` — prompt templates (yes, spelled "promts" in the repo, don't rename it without asking).
 - `integrations/` — integration notes for specific tools.

@@ -4,7 +4,7 @@
 
 **Audience:** Senior developers, tech leads, architects — people who want patterns they can try today.
 
-**As of:** April 2026 (Claude Opus 4.7 / GPT-5 / Gemini 3 era)
+**As of:** May 2026 (Claude Opus 4.7 / GPT-5 / Gemini 3 era)
 
 ---
 
@@ -441,7 +441,7 @@ Domain-Driven Design principles map perfectly to AI-native development:
 
 3. **Treat agent output like junior developer output.** Review everything. Trust nothing implicitly. The model is confident even when wrong.
 
-### Autonomous agent reality check (April 2026)
+### Autonomous agent reality check (May 2026)
 
 The promise: *"Fully autonomous agents that build complete features unsupervised."*
 
@@ -466,11 +466,11 @@ When agents interact with external data (user input, API responses, database con
 - Use output parsing with strict schemas
 - Monitor agent actions for unexpected patterns
 
-### Regulatory compliance (April 2026)
+### Regulatory compliance (May 2026)
 
 The legal landscape has accelerated. Engineering teams must now address:
 
-**EU AI Act (fully applicable August 2, 2026 — ~100 days out):**
+**EU AI Act (fully applicable August 2, 2026 — ~80 days out):**
 - **Article 50**: Transparency obligations require disclosure when content is AI-generated. However, Article 50 **explicitly exempts** AI-assisted content that undergoes human review before publication. Internal source code passing through PR review workflows with human approval qualifies for this exemption. Teams should still maintain VCS attribution of AI-generated code as best practice for traceability.
 - **High-risk classification**: If AI-generated code is a safety component in regulated products (medical devices, critical infrastructure), Articles 8-15 apply — requiring rigorous risk management, data governance, and documented human oversight.
 - **Prohibited practices**: Systems engaging in harmful manipulation or social scoring are strictly banned.
@@ -523,11 +523,11 @@ The US Copyright Office (USCO) has ruled that AI-generated content without signi
 | Cost at scale | Per-token | Hardware capex |
 | Best for | Production work, complex tasks | Sensitive code, offline use, autocomplete |
 
-**Open-source model trajectory (April 2026):**
+**Open-source model trajectory (May 2026):**
 
 The gap between proprietary and open-source coding models is closing significantly. A **Hybrid Strategy** has become the enterprise standard — though the frontier (Claude Opus 4.7, GPT-5, Gemini 3) is still ~6-9 months ahead of the best open weights on complex agentic tasks:
 
-| Model Class | Notable Open-Source (April 2026) | Performance vs. Frontier | Practical Use Case |
+| Model Class | Notable Open-Source (May 2026) | Performance vs. Frontier | Practical Use Case |
 |------------|-------------------------------|----------------------|-------------------|
 | Frontier-Class | DeepSeek V3.2 / Qwen 3.5 Coder | Approaching parity on single-turn coding; lags on long-horizon agentic work | Complex feature implementation |
 | Mid-Tier | Llama 4 (Scout/Maverick) / Mistral Large 3 | -10% to -20% | RAG-driven knowledge retrieval |
@@ -548,7 +548,7 @@ Hardware cost for a capable on-premise GPU cluster (e.g., 8x NVIDIA B200) starts
 
 ## 10. Tool Comparison Matrix
 
-### Agent-capable development tools (April 2026)
+### Agent-capable development tools (May 2026)
 
 | Tool | Best for | Strengths | Weaknesses |
 |------|---------|-----------|------------|
@@ -1001,7 +1001,7 @@ AI-generated code exhibits different failure patterns than human-written code. T
 
 Generic agents are being superseded by specialized "Domain Agents" that understand specific constraints of each technology stack.
 
-### Domain architecture matrix (April 2026)
+### Domain architecture matrix (May 2026)
 
 | Domain | Key Agent Pattern | Specific Tools | SDD Integration |
 |--------|------------------|---------------|-----------------|
